@@ -1,4 +1,4 @@
-Final Project: CrosswordColor
+Final Project: WordSearch
 =========================
 
 ## Authors
