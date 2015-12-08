@@ -99,6 +99,7 @@ class WordSearchViewController: UIViewController {
     var lifeStack: [UIProgressView!] = []
     var notLost: Bool = true
     var puzzlenum: Int = 0
+    var check: [Bool] = []
     
     @IBOutlet weak var newGameBtn: UIButton!
     
@@ -199,7 +200,11 @@ class WordSearchViewController: UIViewController {
     }
     
     func clicked(sender:UIButton!){
+        if(check[sender.tag]){
+            return
+        }
         if(answers.contains(sender.tag) && notLost){
+            check[sender.tag] = true
             var column = ceil((Double(sender.tag)/10) + 0.1)
             answersFound++
             let progressFrac = Float(answersFound)/Float(answers.count)
@@ -238,6 +243,7 @@ class WordSearchViewController: UIViewController {
         game = WordSearch()
         game.start(puzzlenum++)
         notLost = true
+        check = [Bool](count: 64, repeatedValue: false)
         answersFound = 0
         puzzle = game.puzzle
         answers = game.answers
